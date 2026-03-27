@@ -5,6 +5,32 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
 #from PIL import Image as PILImage, ImageDraw
 
+from pathlib import Path
+
+doc_path_root ="C:\\Users\\Pc\\Documents\\"
+doc_path = doc_path_root + "rapport_constat_avec_image"
+# Créer un objet chemin
+chemin = Path(doc_path+".pdf")
+
+# Vérifier si le fichier existe
+#print(chemin.exists())
+
+# Obtenir le nom du fichier
+#print(chemin.name)
+
+# Obtenir l'extension
+#print(chemin.suffix)
+
+# Obtenir le dossier parent
+#print(chemin.parent)
+
+# Créer un dossier
+#Path("nouveau_dossier").mkdir(exist_ok=True)
+
+# Créer un fichier
+#fichier = Path("nouveau_dossier/test.txt")
+#fichier.write_text("Bonjour Python !")
+
 # Create a simple placeholder image
 #img_path = "mos.jpg"
 #img = PILImage.new('RGB', (400, 200), color=(200, 220, 255))
@@ -13,8 +39,11 @@ from reportlab.lib.units import inch
 #img.save(img_path)
 
 # Create PDF
-doc_path = "rapport_constat_avec_image.pdf"
-doc = SimpleDocTemplate(doc_path)
+
+if  chemin.exists():
+    doc_path += "_New"
+    print(f"Le fichier existe déjà. Nouveau chemin : {doc_path}.pdf")
+doc = SimpleDocTemplate(doc_path+".pdf")
 styles = getSampleStyleSheet()
 
 content = []
