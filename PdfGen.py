@@ -3,14 +3,14 @@
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.units import inch
-from PIL import Image as PILImage, ImageDraw
+#from PIL import Image as PILImage, ImageDraw
 
 # Create a simple placeholder image
-img_path = "mos.jpg"
-img = PILImage.new('RGB', (400, 200), color=(200, 220, 255))
-draw = ImageDraw.Draw(img)
-draw.text((50, 80), "IMAGE DU CONSTAT", fill=(0, 0, 0))
-img.save(img_path)
+#img_path = "mos.jpg"
+#img = PILImage.new('RGB', (400, 200), color=(200, 220, 255))
+#draw = ImageDraw.Draw(img)
+#draw.text((50, 80), "IMAGE DU CONSTAT", fill=(0, 0, 0))
+#img.save(img_path)
 
 # Create PDF
 doc_path = "rapport_constat_avec_image.pdf"
@@ -24,8 +24,8 @@ content.append(Paragraph("RAPPORT DE CONSTAT", styles["Title"]))
 content.append(Spacer(1, 12))
 
 # Add Image
-content.append(Image(img_path, width=4*inch, height=2*inch))
-content.append(Spacer(1, 12))
+#content.append(Image(img_path, width=4*inch, height=2*inch))
+#content.append(Spacer(1, 12))
 
 # Sections
 content.append(Paragraph("1. Introduction", styles["Heading2"]))
