@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+        }
+
+        .hero {
+        background: url("{% static 'img/images.jpg' %}") no-repeat center;
+        background-size: cover;
+        padding: 80px 40px;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #cbd5f5;
+        }
+
+        .section {
+            padding: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e293b;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #334155;
+        }
+
+        tr:nth-child(even) {
+            background: #0f172a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <h1>Liste des étudiants</h1>
+        <div class="subtitle">Tous les enregistrements</div>
+    </div>
+
+    <div class="section">
+        <h2>Gestion de PDF</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Année</th>
+                    <th>École</th>
+                    <th>Classe</th>
+                    <th>Élève</th>
+                    <th>%</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in students %}
+                <tr>
+                    <td>{{ s.annee }}</td>
+                    <td>{{ s.ecole }}</td>
+                    <td>{{ s.classe }}</td>
+                    <td>{{ s.eleve }}</td>
+                    <td>{{ s.pourcentage }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

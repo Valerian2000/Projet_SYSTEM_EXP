@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}App Scolaire{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">🎓 SchoolApp</div>
+    <nav>
+        <a href="#">Accueil</a>
+        <a href="{% url 'formulaire' %}">Formulaire</a>
+        <a href="{% url 'liste' %}">Enregistrements</a>
+        <a href="#">À propos</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="overlay">
+        <h1>{% block hero_title %}Gestion scolaire{% endblock %}</h1>
+        <p>{% block hero_subtitle %}Interface moderne et simple{% endblock %}</p>
+    </div>
+</section>
+
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
