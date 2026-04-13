@@ -16,6 +16,13 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 
 
+from django.shortcuts import render
+from .models import Etudiant
+from .forms import EtudiantFilterForm
+
+
+from django.db.models import Avg
+
 def formulaire(request):
     if request.method == "POST":
         Etudiant.objects.create(
@@ -30,9 +37,7 @@ def formulaire(request):
     return render(request, 'html/form.html')
 
 
-from django.shortcuts import render
-from .models import Etudiant
-from .forms import EtudiantFilterForm
+
 
 
 def liste(request):
@@ -79,7 +84,8 @@ def generate_pdf(request):
     try:
 
         html_string = render_to_string("html/pdf_template.html", {
-            'students': data
+            'students': data,
+            'moyenne': data.aggregate(average=Avg('pourcentage'))['average']
         })
 
         # Générer ET enregistrer le PDF dans le fichier

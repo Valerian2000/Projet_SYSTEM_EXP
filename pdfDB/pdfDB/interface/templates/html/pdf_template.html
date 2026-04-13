@@ -14,6 +14,9 @@
         background-size: cover;
         padding: 80px 40px;
         }
+        .average-section{
+        padding: 5px 40px;
+        }
 
         h1 {
             font-size: 40px;
@@ -28,6 +31,15 @@
 
         .section {
             padding: 40px;
+        }
+
+        .logo{
+            background: url("{% static 'img/logo_unikin.png' %}") no-repeat center;
+            background-size: cover;
+            padding: 40px 10px;
+            width: 10%;
+            height: 100%;
+            object-fit: contain; /* ou cover */
         }
 
         table {
@@ -56,6 +68,7 @@
 <body>
 
     <div class="hero">
+        <div class="logo"></div>
         <h1>Liste des étudiants</h1>
         <div class="subtitle">Tous les enregistrements</div>
     </div>
@@ -70,7 +83,8 @@
                     <th>École</th>
                     <th>Classe</th>
                     <th>Élève</th>
-                    <th>%</th>
+                    <!-- <th>%</th> -->
+                    
                 </tr>
             </thead>
             <tbody>
@@ -80,13 +94,21 @@
                     <td>{{ s.ecole }}</td>
                     <td>{{ s.classe }}</td>
                     <td>{{ s.eleve }}</td>
-                    <td>{{ s.pourcentage }}%</td>
+                    <!-- <td>{{ s.pourcentage }}%</td>-->
+                    
                 </tr>
                 {% endfor %}
+                
             </tbody>
         </table>
 
     </div>
+
+    <div class="average-section" >
+        <div class="subtitle"> la moyenne est : {{ moyenne|floatformat:2 }} % </div>
+    </div>
+
+
 
 </body>
 </html>
