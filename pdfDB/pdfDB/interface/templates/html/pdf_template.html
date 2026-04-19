@@ -5,14 +5,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
+            /*background: #0f172a;*/
+            color: black; /*white;*/
         }
 
         .hero {
-        background: url("{% static 'img/images.jpg' %}") no-repeat center;
+        /*background: url("{% static 'img/images.jpg' %}") no-repeat center;*/
         background-size: cover;
-        padding: 80px 40px;
+        padding: 8px 40px;
         }
         .average-section{
         padding: 5px 40px;
@@ -23,10 +23,19 @@
             margin: 0;
         }
 
+        .title {
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            margin-top: 10px;
+            margin-bottom: 10px;
+*
+        }
         .subtitle {
             margin-top: 10px;
             font-size: 18px;
-            color: #cbd5f5;
+            /*color: #cbd5f5;*/
+            color: #000000;
         }
 
         .section {
@@ -45,7 +54,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            background: #1e293b;
+            background: #ffffff;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -56,11 +65,12 @@
         }
 
         th {
-            background: #334155;
+            background: #000000;
+            color: #fffefe;
         }
 
         tr:nth-child(even) {
-            background: #0f172a;
+            background: #ffffff;
         }
     </style>
 </head>
@@ -68,13 +78,13 @@
 <body>
 
     <div class="hero">
-        <div class="logo"></div>
-        <h1>Liste des étudiants</h1>
+        <div class="logo"></div> 
+        <h1 class="title">Liste des étudiants</h1>
         <div class="subtitle">Tous les enregistrements</div>
     </div>
 
     <div class="section">
-        <h2>Gestion de PDF</h2>
+        <h2>Tableau récapitulatif</h2>
 
         <table>
             <thead>
@@ -83,7 +93,7 @@
                     <th>École</th>
                     <th>Classe</th>
                     <th>Élève</th>
-                    <!-- <th>%</th> -->
+                    <th>%</th> 
                     
                 </tr>
             </thead>
@@ -94,7 +104,7 @@
                     <td>{{ s.ecole }}</td>
                     <td>{{ s.classe }}</td>
                     <td>{{ s.eleve }}</td>
-                    <!-- <td>{{ s.pourcentage }}%</td>-->
+                    <td>{{ s.pourcentage }}%</td>
                     
                 </tr>
                 {% endfor %}
