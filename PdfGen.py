@@ -31,7 +31,7 @@ chemin = Path(doc_path+".pdf")
 #fichier = Path("nouveau_dossier/test.txt")
 #fichier.write_text("Bonjour Python !")
 
-# Create a simple placeholder image
+ # Create a simple placeholder image
 #img_path = "mos.jpg"
 #img = PILImage.new('RGB', (400, 200), color=(200, 220, 255))
 #draw = ImageDraw.Draw(img)

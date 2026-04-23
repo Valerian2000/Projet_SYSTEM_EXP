@@ -1,4 +1,4 @@
-from experta import *
+from experta import KnowledgeEngine
 
 class SystemeExpert(KnowledgeEngine):
 
@@ -17,16 +17,13 @@ class SystemeExpert(KnowledgeEngine):
         """
         Vérifie les règles dynamiques à chaque cycle
         """
-        faits = {k: v for fact in self.facts.values() if isinstance(fact, Fact)
-                 for k, v in fact.items()}
-
+        faits = {k: v for fact in self.facts.values() if isinstance(fact, Fact) for k, v in fact.items()}
         for conditions, conclusion in self.regles_dynamiques:
             if all(faits.get(k) == v for k, v in conditions.items()):
                 # éviter duplication
-                deja_present = any(
-                    all(f.get(k) == v for k, v in conclusion.items())
-                    for f in self.facts.values() if isinstance(f, Fact)
-                )
+                deja_present = any( 
+                    all(f.get(k) == v for k, v in conclusion.items()) for f in self.facts.values() if isinstance(f, Fact)
+                    )
 
                 if not deja_present:
                     print(f"Règle dynamique appliquée : {conditions} => {conclusion}")
