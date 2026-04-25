@@ -72,6 +72,20 @@
         tr:nth-child(even) {
             background: #ffffff;
         }
+
+        .chart-container {
+        text-align: center;
+        margin-top: 20px;
+        margin-left: 40px;
+        }
+
+        .chart-image {
+        width: 80%;           /* taille du camembert */
+        max-width: 80%;        /* responsive */
+        border-radius: 10px;    /* coins arrondis */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* effet pro */
+        }
+
     </style>
 </head>
 
@@ -84,7 +98,7 @@
     </div>
 
     <div class="section">
-        <h2>Tableau récapitulatif</h2>
+        <h2 class="subtitle">Tableau récapitulatif</h2>
 
         <table>
             <thead>
@@ -116,6 +130,14 @@
 
     <div class="average-section" >
         <div class="subtitle"> la moyenne est : {{ moyenne|floatformat:2 }} % </div>
+    </div>
+    
+    
+    <div class="section">
+        <h2 class="subtitle">Diagramme des pourcentages</h2>
+        <div class="chart-container">
+            <img src="data:image/png;base64,{{ chart_image }}" class="chart-image" />
+        </div>
     </div>
 
 

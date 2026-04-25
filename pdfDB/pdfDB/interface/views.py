@@ -23,6 +23,12 @@ from .forms import EtudiantFilterForm
 
 from django.db.models import Avg
 
+
+import matplotlib.pyplot as plt
+import io
+import base64
+
+
 def formulaire(request):
     if request.method == "POST":
         Etudiant.objects.create(
@@ -82,10 +88,12 @@ def generate_pdf(request):
         file_path = base_path / "rapport_constat_avec_image_new.pdf"
 
     try:
+        chart_image = generate_chart(data)
 
         html_string = render_to_string("html/pdf_template.html", {
             'students': data,
-            'moyenne': data.aggregate(average=Avg('pourcentage'))['average']
+            'moyenne': data.aggregate(average=Avg('pourcentage'))['average'],
+            'chart_image': chart_image  # 👈 on envoie l'image,
         })
 
         # Générer ET enregistrer le PDF dans le fichier
@@ -108,4 +116,21 @@ def generate_pdf(request):
 
     except FileNotFoundError:
         return HttpResponse("Fichier introuvable")
+
+
+def generate_chart(data):
+    labels = [s.eleve for s in data]
+    values = [s.pourcentage for s in data]
+
+    plt.figure()
+    plt.pie(values, labels=labels, autopct='%1.1f%%')
+
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+
+    image_png = buffer.getvalue()
+    buffer.close()
+
+    return base64.b64encode(image_png).decode('utf-8')
 
